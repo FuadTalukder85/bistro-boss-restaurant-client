@@ -5,6 +5,9 @@ import "swiper/css";
 // import "swiper/css/pagination";
 import { Pagination } from "swiper";
 
+
+//TODO: pnplent pagination from here this page
+
 const OrderTabs = ({ items }) => {
     const pagination = {
         clickable: true,
