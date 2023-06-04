@@ -3,32 +3,33 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { FaTrashAlt, FaUserShield } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const AllUsers = () => {
+    const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        // console.log(users);
-        const res = await fetch('http://localhost:5000/users')
-        return res.json();
+        const res = await axiosSecure.get('http://localhost:5000/users')
+        return res.data;
     })
 
     const handleMakeAdmin = user => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: 'PATCH'
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            if(data.modifiedCount){
-                refetch();
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: `${user.name}, is an admin now!`,
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: `${user.name} is an admin now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
 
     const handleDelete = () => {

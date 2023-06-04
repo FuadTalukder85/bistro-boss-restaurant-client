@@ -5,6 +5,7 @@ import {
 import AllUsers from "../Layout/AllUsers/AllUsers";
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
+import AddItem from "../Pages/Dashboard/AddItem/AddItem";
 import MyCart from "../Pages/Dashboard/MyCart/MyCart";
 import Home from "../Pages/Home/Home/Home";
 import Menu from "../Pages/Home/Menu/Menu";
@@ -56,6 +57,10 @@ export const router = createBrowserRouter([
       {
         path: 'allusers',
         element: <AllUsers></AllUsers>
+      },
+      {
+        path: 'addItem',
+        element: <AddItem></AddItem>
       }
     ]
   }
