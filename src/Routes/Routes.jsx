@@ -6,6 +6,7 @@ import AllUsers from "../Layout/AllUsers/AllUsers";
 import Dashboard from "../Layout/Dashboard";
 import Main from "../Layout/Main";
 import AddItem from "../Pages/Dashboard/AddItem/AddItem";
+import ManageItems from "../Pages/Dashboard/ManageItems/ManageItems";
 import MyCart from "../Pages/Dashboard/MyCart/MyCart";
 import Home from "../Pages/Home/Home/Home";
 import Menu from "../Pages/Home/Menu/Menu";
@@ -13,11 +14,12 @@ import Login from "../Pages/Login/Login";
 import Order from "../Pages/Order/Order/Order";
 import Secret from "../Pages/Shares/Secret/Secret";
 import SignUp from "../Pages/SignUp/SignUp";
+import AdminRoute from "./AdminRoute";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Main></Main>,
     children: [
       {
@@ -49,7 +51,7 @@ export const router = createBrowserRouter([
   {
     path: '/dashboard',
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-    children: [ 
+    children: [
       {
         path: 'mycart',
         element: <MyCart></MyCart>
@@ -60,7 +62,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'addItem',
-        element: <AddItem></AddItem>
+        element: <AdminRoute><AddItem></AddItem></AdminRoute>
+      },
+      {
+        path: 'manageitems',
+        element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
       }
     ]
   }
